@@ -19,16 +19,8 @@ public class Expert {
     @Column
     private int status;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ExpertCheckPoint> expertCheckPointList;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getStatus() {
         return status;
@@ -36,6 +28,14 @@ public class Expert {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
     public List<ExpertCheckPoint> getExpertCheckPointList() {
@@ -46,11 +46,11 @@ public class Expert {
         this.expertCheckPointList = expertCheckPointList;
     }
 
-    public Long getCarId() {
-        return carId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

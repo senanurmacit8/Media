@@ -3,6 +3,7 @@ package com.car.media.service.impl;
 import com.car.media.entity.Expert;
 import com.car.media.entity.ExpertCheckPoint;
 import com.car.media.entity.PhotoInfo;
+import com.car.media.exception.NotFoundException;
 import com.car.media.model.MediaRequest;
 import com.car.media.model.MediaResponse;
 import com.car.media.repository.ExpertRepository;
@@ -43,7 +44,7 @@ class MediaServiceImplTest {
     }
 
     @Test
-    void getReadMedia() {
+    void getReadMedia() throws NotFoundException {
         Mockito.when(expertRepository.findAllByCarIdAndStatus(Mockito.anyLong(),Mockito.anyInt()))
                 .thenReturn(dummyExpertList());
 

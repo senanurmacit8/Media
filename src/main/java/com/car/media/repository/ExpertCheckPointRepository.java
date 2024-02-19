@@ -9,4 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ExpertCheckPointRepository extends JpaRepository<ExpertCheckPoint, Long> {
+    List<ExpertCheckPoint> findAllByExpertId(Long ExpertId);
 }

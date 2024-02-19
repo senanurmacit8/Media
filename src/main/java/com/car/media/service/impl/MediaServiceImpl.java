@@ -4,6 +4,7 @@ package com.car.media.service.impl;
 import com.car.media.entity.Expert;
 import com.car.media.entity.ExpertCheckPoint;
 import com.car.media.entity.PhotoInfo;
+import com.car.media.exception.NotFoundException;
 import com.car.media.model.MediaRequest;
 import com.car.media.model.MediaResponse;
 import com.car.media.repository.ExpertCheckPointRepository;
@@ -55,13 +56,24 @@ public class MediaServiceImpl implements MediaService {
      * @return
      */
     @Override
-    public MediaResponse getReadMedia(Long carId) {
+    public MediaResponse getReadMedia(Long carId) throws NotFoundException {
         MediaResponse mediaResponse = new MediaResponse();
 
         List<Expert> activeExpertList = expertRepository.findAllByCarIdAndStatus(carId,0);
 
         if(!CollectionUtils.isEmpty(activeExpertList)){
-            mediaResponse.setExpert(activeExpertList.get(0));
+            Expert activeExpert = activeExpertList.get(0);
+
+            List<ExpertCheckPoint> expertCheckPointList = expertCheckPointRepository.findAllByExpertId(activeExpert.getId());
+            for(ExpertCheckPoint expertCheckPoint : expertCheckPointList){
+                expertCheckPoint.setPhotoInfoList(photoRepository.findAllByExpertCheckPointId(expertCheckPoint.getId()));
+            }
+
+            activeExpert.setExpertCheckPointList(expertCheckPointList);
+
+            mediaResponse.setExpert(activeExpert);
+        }else{
+            throw new NotFoundException("The cardId is not found !...");
         }
 
         return mediaResponse;
