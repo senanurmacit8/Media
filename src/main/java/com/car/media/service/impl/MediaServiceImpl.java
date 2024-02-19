@@ -58,7 +58,7 @@ public class MediaServiceImpl implements MediaService {
     public MediaResponse getReadMedia(Long carId) {
         MediaResponse mediaResponse = new MediaResponse();
 
-        List<Expert> activeExpertList = expertRepository.findAllByCardIdAndStatus(carId,0);
+        List<Expert> activeExpertList = expertRepository.findAllByCarIdAndStatus(carId,0);
 
         if(!CollectionUtils.isEmpty(activeExpertList)){
             mediaResponse.setExpert(activeExpertList.get(0));

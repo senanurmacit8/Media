@@ -44,7 +44,7 @@ class MediaServiceImplTest {
 
     @Test
     void getReadMedia() {
-        Mockito.when(expertRepository.findAllByCardIdAndStatus(Mockito.anyLong(),Mockito.anyInt()))
+        Mockito.when(expertRepository.findAllByCarIdAndStatus(Mockito.anyLong(),Mockito.anyInt()))
                 .thenReturn(dummyExpertList());
 
         MediaResponse expected = new MediaResponse();

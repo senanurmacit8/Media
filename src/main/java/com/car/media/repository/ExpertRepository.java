@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ExpertRepository extends JpaRepository<Expert,Long> {
 
-    List<Expert> findAllByCardIdAndStatus(long carId , int isActive);
+    List<Expert> findAllByCarIdAndStatus(long carId , int isActive);
 }

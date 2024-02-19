@@ -3,6 +3,7 @@ package com.car.media.controller;
 
 import com.car.media.model.MediaRequest;
 import com.car.media.model.MediaResponse;
+import com.car.media.service.MediaService;
 import com.car.media.service.impl.MediaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MediaController {
 
     @Autowired
-    MediaServiceImpl mediaService;
+    MediaService mediaService;
 
     @GetMapping(value = "/getExpert", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
